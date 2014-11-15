@@ -4,6 +4,8 @@
   <title>Picky Foody</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/css/animations.css">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/picky.css">
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
   <style>
@@ -26,7 +28,7 @@
     }
 
     body {
-  background-image:url('/static/images/restaurant.png');
+  background-image:url('/static/images/restaurant_icons.png');
   background-repeat:repeat;
 }
 
@@ -42,7 +44,7 @@ h1 {
 
 
 <body>
-<h1>Picky</h1>
+<h1>PICKY</h1>
 <div class="center">
 <ul>
     <li><img id='img1' src='/static/images/kids.jpg' ></li>
@@ -88,7 +90,7 @@ h1 {
             // Stop detecting touches on element when it's no longer needed. Can prevent odd behaviour.
             event.gesture.stopDetect();
             elementToDelete.style.display = 'none';
-
+            $('.center').css('display', 'none');
             $(".kids").css("display", "block")
 
             var kidsItems = document.querySelectorAll('.kids li');
