@@ -11,6 +11,11 @@ html { font-size: 100%; }
 img {
 	height:260px;
 }
+
+    body {
+  background-image:url('/static/images/restaurant.png');
+  background-repeat:repeat;
+}
  
 /* Medium screens (640px) */
 @media (min-width: 40rem) {

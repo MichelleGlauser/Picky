@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/css/animations.css">
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
   <style>
 
     ul{
@@ -24,6 +25,16 @@
 
     }
 
+    body {
+  background-image:url('/static/images/restaurant.png');
+  background-repeat:repeat;
+}
+
+h1 {
+  text-align:center;
+  font-family:Lato;
+}
+
 
 
   </style>
@@ -31,14 +42,34 @@
 
 
 <body>
-<h1>Picky Foody</h1>
+<h1>Picky</h1>
 <div class="center">
 <ul>
+    <li><img id='img1' src='/static/images/kids.jpg' ></li>
+    <li><img id='img2' src='/static/images/ambient.jpg'  ></li>
+    <li><img id='img3' src='/static/images/romantic.jpg' ></li>
+</ul>
+<!-- <ul>
     <li class="swipe" id='filterOthers' ><img  src='/static/images/romantic.jpg' ></li>
     <li class="swipe" id='filterFineDining'><img  src='/static/images/ambient.jpg'  ></li>
     <li class="swipe" id='filterKids'><img src='/static/images/kids.jpg' ></li>
     
-</ul>
+</ul> -->
+</div>
+
+<div class="kids" style="display: none">
+  <ul>
+    <li><a href="http://www.yelp.com/biz/bibimbowl-sunnyvale-2"><img id='kid1' src="http://s3-media3.fl.yelpcdn.com/bphoto/k-1a7zw_TJ5lLjG9A73wcw/90s.jpg" ></a></li>
+    <li><a href="href": "http://www.yelp.com/biz/little-india-cafe-sunnyvale"><img id='kid2' src="http://s3-media1.fl.yelpcdn.com/bphoto/caKHdofdUPkahoLEgjRxMw/90s.jpg" ></a></li>  
+    <li><a href="href": "http://www.yelp.com/biz/dish-n-dash-sunnyvale"><img id='kid3' src="http://s3-media2.fl.yelpcdn.com/bphoto/msstgVREANx5Ktu6woA6BA/90s.jpg" ></a></li>
+    <li><a href="http://www.yelp.com/biz/sushi-club-sunnyvale"><img id='kid4' src="http://s3-media2.fl.yelpcdn.com/bphoto/mkwNNdHbTJqaf-ZOt2qcsg/90s.jpg" ></a></li>
+    <li><a href="http://www.yelp.com/biz/bagel-street-cafe-sunnyvale"><img id='kid5' src="http://s3-media2.fl.yelpcdn.com/bphoto/2SuWaut1ybHDHlqKns57XQ/90s.jpg" ></a></li>
+    <li><a href="http://www.yelp.com/biz/sunnyvale-cafe-sunnyvale-2"><img id='kid6' src="http://s3-media3.fl.yelpcdn.com/bphoto/SK-7v5Te850LM0v-zI8OTQ/90s.jpg" ></a></li>
+    <li><a href="http://www.yelp.com/biz/gombei-bento-sunnyvale"><img id='kid7' src="http://s3-media2.fl.yelpcdn.com/bphoto/tlP7IMzeMlzQe16ZCPdYpg/90s.jpg" ></a></li>
+    <li><a href="http://www.yelp.com/biz/toofu-sunnyvale"><img id='kid8' src="http://s3-media1.fl.yelpcdn.com/bphoto/T94Gli9vJ_hi1FAscSljxw/90s.jpg" ></a></li>
+    <li><a href="http://www.yelp.com/biz/hobees-restaurant-sunnyvale"><img id='kid9' src="http://s3-media4.fl.yelpcdn.com/bphoto/tQhByufr_y4a-a7AUnE--A/90s.jpg" ></a></li>
+    <li><a href="http://www.yelp.com/biz/rubys-taqueria-sunnyvale"><img id='kid10' src="http://s3-media2.fl.yelpcdn.com/bphoto/iO_OXGTj4G64f7ByEz2OVg/90s.jpg" ></a></li>
+  </ul>
 </div>
 
 <!-- Include hammer.js library -->
@@ -57,6 +88,13 @@
             // Stop detecting touches on element when it's no longer needed. Can prevent odd behaviour.
             event.gesture.stopDetect();
             elementToDelete.style.display = 'none';
+
+            $(".kids").css("display", "block")
+
+            var kidsItems = document.querySelectorAll('.kids li');
+            for (var i = 0; i < kidsItems.length; i += 1) {
+                initKidListeners(kidsItems[i]);
+            }
             
         };
         function deleteLeftElement(event) {
@@ -66,24 +104,38 @@
             // Stop detecting touches on element when it's no longer needed. Can prevent odd behaviour.
             event.gesture.stopDetect();
             elementToDelete.style.display = 'none';
-            $.getJSON("/static/js/kidfriendly.json", function(json) {
-              $('#filterFineDining').html("<img class='swipe' src='" + json[2].src + "'>");
-                  kid_image_list = []
-                  for (var item = 0; item < json.length; item += 1) {
-                    var kidFoodName = json[item].alt;
-                    var kidFoodLink = json[item].href;
-                    var kidFoodImg = json[item].src;
-                    kid_image_list.push(kidFoodImg);
-                    // initTouchListeners();
+            // $.getJSON("/static/js/kidfriendly.json", function(json) {
+            //   $('#filterFineDining').html("<img class='swipe' src='" + json[2].src + "'>");
+            //       kid_image_list = []
+            //       for (var item = 0; item < json.length; item += 1) {
+            //         var kidFoodName = json[item].alt;
+            //         var kidFoodLink = json[item].href;
+            //         var kidFoodImg = json[item].src;
+            //         kid_image_list.push(kidFoodImg);
+            //         // initTouchListeners();
                    
 
                    
-               }
+               // }
                // console.log(kid_image_list);
                // console.log(json)
-              });
+              // });
         };
 
+
+        function deleteElement(event) {
+            var elementToDelete = event.target;
+            // Stop detecting touches on element when it's no longer needed. Can prevent odd behaviour.
+            event.gesture.stopDetect();
+            elementToDelete.style.display = 'none';
+        };
+
+        function initKidListeners(touchableElement) {
+            var touchControl = new Hammer(touchableElement, swipeOptions);
+            touchControl.on("swiperight", deleteRightElement)
+                        .on("swipeleft", deleteLeftElement);
+                
+        };
 
         var swipeOptions = { dragLockToAxis: true, dragBlockHorizontal: true };
 
@@ -94,7 +146,7 @@
         };
 
         // # this is the entrance. 
-        var listItems = document.querySelectorAll('.swipe');
+        var listItems = document.querySelectorAll('li');
         var filterFineDining = document.querySelectorAll('#filterFineDining');
 
 
