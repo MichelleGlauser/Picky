@@ -34,11 +34,9 @@
 <h1>Picky Foody</h1>
 <div class="center">
 <ul>
-    <li id='filterOthers' ><img  src='/static/images/romantic.jpg' ></li>
-    <li id='filterFineDining'><img  src='/static/images/ambient.jpg'  ></li>
-    <li id='filterKids'><img src='/static/images/kids.jpg' ></li>
-    
-
+    <li><img id='img1' src='/static/images/kids.jpg' ></li>
+    <li><img id='img2' src='/static/images/ambient.jpg'  ></li>
+    <li><img id='img3' src='/static/images/romantic.jpg' ></li>
 </ul>
 </div>
 
@@ -68,20 +66,18 @@
         };
 
 
+        // Swipe options as recommended by:
+        // https://github.com/EightMedia/hammer.js/wiki/Tips-&-Tricks#horizontal-swipe-and-drag
         var swipeOptions = { dragLockToAxis: true, dragBlockHorizontal: true };
-
         function initTouchListeners(touchableElement) {
             var touchControl = new Hammer(touchableElement, swipeOptions);
             touchControl.on("swiperight", deleteRightElement)
                         .on("swipeleft", deleteLeftElement);
         };
 
-        # this is the entrance. 
-        var filterKids = document.querySelectorAll('#filterKids');
-        var filterFineDinig = document.querySelectorAll('#filter');
-
-        # for (var i = 0; i < listItems.length; i += 1) {
-        #     initTouchListeners(listItems[i]);
+        var listItems = document.querySelectorAll('li');
+        for (var i = 0; i < listItems.length; i += 1) {
+            initTouchListeners(listItems[i]);
 
         }
     }
