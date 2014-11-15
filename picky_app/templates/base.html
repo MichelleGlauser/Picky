@@ -34,11 +34,10 @@
 <h1>Picky Foody</h1>
 <div class="center">
 <ul>
-    <li id='filterOthers' ><img  src='/static/images/romantic.jpg' ></li>
-    <li id='filterFineDining'><img  src='/static/images/ambient.jpg'  ></li>
-    <li id='filterKids'><img src='/static/images/kids.jpg' ></li>
+    <li class="swipe" id='filterOthers' ><img  src='/static/images/romantic.jpg' ></li>
+    <li class="swipe" id='filterFineDining'><img  src='/static/images/ambient.jpg'  ></li>
+    <li class="swipe" id='filterKids'><img src='/static/images/kids.jpg' ></li>
     
-
 </ul>
 </div>
 
@@ -63,15 +62,25 @@
         function deleteLeftElement(event) {
             var elementToDelete = event.target;
             // $(this).addClass("fadeOutLeft");
+            // $(this).addClass("fadeOutLeft");
             // Stop detecting touches on element when it's no longer needed. Can prevent odd behaviour.
             event.gesture.stopDetect();
             elementToDelete.style.display = 'none';
             $.getJSON("/static/js/kidfriendly.json", function(json) {
-                 for (var item = 0; item < json.length; item += 1) {
-                 var kidFoodName = json[item].alt
-                 // var 
-                 console.log(kidFoodName)
+              $('#filterFineDining').html("<img class='swipe' src='" + json[2].src + "'>");
+                  kid_image_list = []
+                  for (var item = 0; item < json.length; item += 1) {
+                    var kidFoodName = json[item].alt;
+                    var kidFoodLink = json[item].href;
+                    var kidFoodImg = json[item].src;
+                    kid_image_list.push(kidFoodImg);
+                    // initTouchListeners();
+                   
+
+                   
                }
+               // console.log(kid_image_list);
+               // console.log(json)
               });
         };
 
@@ -85,8 +94,9 @@
         };
 
         // # this is the entrance. 
-        var listItems = document.querySelectorAll('#filterKids');
-        var filterFineDinig = document.querySelectorAll('#filter');
+        var listItems = document.querySelectorAll('.swipe');
+        var filterFineDining = document.querySelectorAll('#filterFineDining');
+
 
         for (var i = 0; i < listItems.length; i += 1) {
              initTouchListeners(listItems[i]);
