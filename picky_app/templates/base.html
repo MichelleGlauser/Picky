@@ -62,9 +62,17 @@
         };
         function deleteLeftElement(event) {
             var elementToDelete = event.target;
+            // $(this).addClass("fadeOutLeft");
             // Stop detecting touches on element when it's no longer needed. Can prevent odd behaviour.
             event.gesture.stopDetect();
             elementToDelete.style.display = 'none';
+            $.getJSON("/static/js/kidfriendly.json", function(json) {
+                 for (var item = 0; item < json.length; item += 1) {
+                 var kidFoodName = json[item].alt
+                 // var 
+                 console.log(kidFoodName)
+               }
+              });
         };
 
 
@@ -76,13 +84,12 @@
                         .on("swipeleft", deleteLeftElement);
         };
 
-        # this is the entrance. 
-        var filterKids = document.querySelectorAll('#filterKids');
+        // # this is the entrance. 
+        var listItems = document.querySelectorAll('#filterKids');
         var filterFineDinig = document.querySelectorAll('#filter');
 
-        # for (var i = 0; i < listItems.length; i += 1) {
-        #     initTouchListeners(listItems[i]);
-
+        for (var i = 0; i < listItems.length; i += 1) {
+             initTouchListeners(listItems[i]);
         }
     }
     webDevBreak.prepareForTouchesWhenReady = function() {
