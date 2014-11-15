@@ -33,20 +33,15 @@ ul{
 h1 {
   text-align:center;
   font-family:Lato;
+  font-size: 60px;
+  color: #3eb489;
+
 }
-
-
-
-
 
 img {
 	height:260px;
 }
 
-    body {
-  background-image:url('/static/images/restaurant.png');
-  background-repeat:repeat;
-}
  
 /* Medium screens (640px) */
 @media (min-width: 40rem) {
